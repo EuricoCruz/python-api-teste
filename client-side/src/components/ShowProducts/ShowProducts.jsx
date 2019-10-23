@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './ShowProducts.css'
 import Axios from 'axios';
 import { Link } from "react-router-dom";
+import bulma from "bulma"
 
 class ShowProducts extends Component {
   constructor() {
@@ -35,9 +36,11 @@ class ShowProducts extends Component {
       )
     } else {
       return(
-      <div>
+      <div className="container">
+        <div className='notification'>
+
         <h1 className="title is-1 main-title">Produtos em estoque</h1>  
-        <table className="table is-bordered">
+        <table className="table is-bordered container">
           <thead>
             <tr>
               <td>Nome</td>
@@ -54,7 +57,7 @@ class ShowProducts extends Component {
               <tr>
                 <td>{product._nome}</td>
                 <td>{product._quantidade}</td>
-                <td>{product._preco}</td>
+                <td>R$ {product._preco}</td>
                 <td>{product._codigo}</td>
                 <td>{product._categoria}</td>
                 
@@ -63,6 +66,10 @@ class ShowProducts extends Component {
               </tr>)} 
           </tbody>
         </table>
+        <Link to='/add'>
+          <button className="button">Adicionar produto</button>
+        </Link>
+        </div>
       </div>
 
       )

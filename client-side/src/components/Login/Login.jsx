@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom"
+import ShowProducts from '../ShowProducts/ShowProducts';
 
 class Login extends Component {
   constructor(){
@@ -26,7 +28,9 @@ class Login extends Component {
               <input className="input is-primary" type="text" placeholder='Insira a quantidade' name="password" />
             </div>
         </div>
-        <input className="button" type="submit" value="Entrar"/>
+        <Link to={'/showProducts'}>
+          <input className="button" type="submit" value="Entrar"/>
+        </Link>
       </form>
       </div>
     )

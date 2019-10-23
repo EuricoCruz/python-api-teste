@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom'
 import bulma from 'bulma'
 import axios from 'axios'
 
@@ -49,7 +50,7 @@ class EditProduct extends Component {
 
   render() {
     return(
-      <div>
+      <div className='notification container'>
         <h1 className="title is-1 main-title">Atualizar Produto</h1>
         <form onSubmit={this.handleFormSubmit}>
         <div className="field">
@@ -83,6 +84,9 @@ class EditProduct extends Component {
             </div>
           </div>
           <input className="button" type="submit" value="Atualizar"/>
+          <Link to='/showProducts'>
+            <button className="button">Verificar produtos</button>
+          </Link>
         </form>
       </div>
     )

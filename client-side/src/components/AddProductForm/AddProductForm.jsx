@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from "react-router-dom"
 import bulma from 'bulma'
 import './AddProductForm.css'
 import axios from 'axios'
@@ -29,7 +30,7 @@ class AddProductForm extends Component {
   render() {
 
     return(
-      <div>
+      <div className='container notification'>
         <h1 className="title is-1 main-title">Adicione um novo produto</h1>
         <form onSubmit={this.handleFormSubmit}>
         <div className="field">
@@ -63,6 +64,9 @@ class AddProductForm extends Component {
             </div>
           </div>
           <input className="button" type="submit" value="Adicionar"/>
+          <Link to='/showProducts'>
+            <button className="button">Verificar produtos</button>
+          </Link>
         </form>
       </div>
     )
