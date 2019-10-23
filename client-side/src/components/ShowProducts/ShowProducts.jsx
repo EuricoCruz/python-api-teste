@@ -21,14 +21,12 @@ class ShowProducts extends Component {
   }
 
   deleteProduct = (product) => {
-    console.log(product._id)
     Axios.delete(`http://127.0.0.1:5000/produtos/${product._id}`)
     .then(() => this.getProducts())
   }
 
   componentDidMount() {
     this.getProducts()
-    console.log(this.state.products)
   }
   render(){
     if(this.state.products.length <= 0) {
@@ -36,7 +34,6 @@ class ShowProducts extends Component {
         <h1 className="title is-1 main-title">Não há produos registrados</h1>
       )
     } else {
-      console.log(this.state.products)
       return(
       <div>
         <h1 className="title is-1 main-title">Produtos em estoque</h1>  
