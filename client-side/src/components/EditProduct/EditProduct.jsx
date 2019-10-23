@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import bulma from 'bulma'
-import './AddProductForm.css'
 import axios from 'axios'
 
-class AddProductForm extends Component {
+class EditProduct extends Component {
   construtor() {
     this.state = {
       nome:'',
@@ -30,7 +29,7 @@ class AddProductForm extends Component {
 
     return(
       <div>
-        <h1 className="title is-1 main-title">Adicione um novo produto</h1>
+        <h1 className="title is-1 main-title">Atualizar Produto</h1>
         <form onSubmit={this.handleFormSubmit}>
         <div className="field">
             <div className="control">
@@ -62,11 +61,11 @@ class AddProductForm extends Component {
               onChange={e => this.handleChange(e)} />
             </div>
           </div>
-          <input className="button" type="submit" value="Adicionar"/>
+          <input className="button" type="submit" value="Atualizar"/>
         </form>
       </div>
     )
   }
 }
 
-export default AddProductForm 
+export default EditProduct

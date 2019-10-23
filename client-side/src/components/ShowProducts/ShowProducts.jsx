@@ -19,8 +19,10 @@ class ShowProducts extends Component {
       })
   }
 
-  deleteProduct = () => {
-    Axios.delete('http://127.0.0.1:5000/produtos/5daf0c8a7077abd2757b1003')
+  deleteProduct = (product) => {
+    console.log(product._id)
+    Axios.delete(`http://127.0.0.1:5000/produtos/${product._id}`)
+    .then(() => this.getProducts())
   }
 
   componentDidMount() {
@@ -58,7 +60,7 @@ class ShowProducts extends Component {
                 <td>{product._codigo}</td>
                 <td>{product._categoria}</td>
                 <td><input className="button" type="submit" value="Editar"/></td>
-                <td><input className="button" type="submit" value="Deletar" onClick={e => this.deleteProduct(e)}/> </td>
+                <td><input className="button" type="submit" value="Deletar" onClick={(e) => this.deleteProduct(product)}/> </td>
               </tr>)} 
           </tbody>
         </table>
