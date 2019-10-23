@@ -3,6 +3,7 @@ import AddProductForm from './components/AddProductForm/AddProductForm'
 import ShowProducts from './components/ShowProducts/ShowProducts'
 import EditProduct from './components/EditProduct/EditProduct'
 import Login from './components/Login/Login'
+import { Switch, Route } from "react-router-dom";
 
 function App() {
   return (
@@ -10,7 +11,9 @@ function App() {
       <Login/>
       <ShowProducts />
       <AddProductForm />
-      <EditProduct />
+      <Switch>
+        <Route exact path='/edit/:id' component={EditProduct} />
+      </Switch>
     </div>
   );
 }

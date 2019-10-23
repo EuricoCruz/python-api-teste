@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './ShowProducts.css'
 import Axios from 'axios';
+import { Link } from "react-router-dom";
 
 class ShowProducts extends Component {
   constructor() {
@@ -59,7 +60,8 @@ class ShowProducts extends Component {
                 <td>{product._preco}</td>
                 <td>{product._codigo}</td>
                 <td>{product._categoria}</td>
-                <td><input className="button" type="submit" value="Editar"/></td>
+                
+                  <td><Link to={`/edit/${product._id}`}><button class="button">Editar</button></Link></td>
                 <td><input className="button" type="submit" value="Deletar" onClick={(e) => this.deleteProduct(product)}/> </td>
               </tr>)} 
           </tbody>

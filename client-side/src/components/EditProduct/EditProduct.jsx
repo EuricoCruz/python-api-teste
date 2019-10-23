@@ -25,15 +25,32 @@ class EditProduct extends Component {
     })
   }
 
-  render() {
+  getProduct = () => {
+    axios.get(`http://127.0.0.1:5000/encontrar/${this.props.match.params.id}`)
+    .then((product) => {
+      this.setState({
+        nome: product._nome,
+        quantidade: product._quantidade,
+        preco: product._preco,
+        codigo: product._codigo,
+        categoria: product._categoria
+      })
+      console.log(product)
+    })
+  }
 
+  componentDidMount() {
+    this.getProduct()
+  }
+
+  render() {
     return(
       <div>
         <h1 className="title is-1 main-title">Atualizar Produto</h1>
         <form onSubmit={this.handleFormSubmit}>
         <div className="field">
             <div className="control">
-              <input className="input is-primary" type="text" placeholder='Insira o nome do produto' name="nome" 
+              <input className="input is-primary" type="text" placeholder='Insira o nome do produto' name="nome"
               onChange={e => this.handleChange(e)} />
             </div>
           </div>
