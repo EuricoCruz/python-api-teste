@@ -16,6 +16,7 @@ class OneProduct extends Component {
           product: response.data
         })
       })
+      .catch(error => console.log(error))
   }
 
   componentDidMount() {

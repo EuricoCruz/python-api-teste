@@ -18,6 +18,7 @@ class ShowProducts extends Component {
           products: response.data
         })
       })
+      .catch(error => console.log(error))
   }
 
   deleteProduct = (product) => {
@@ -28,6 +29,7 @@ class ShowProducts extends Component {
   componentDidMount() {
     this.getProducts()
   }
+  
   render(){
     if(this.state.products.length <= 0) {
       return (
@@ -59,9 +61,11 @@ class ShowProducts extends Component {
           <tbody>
               {this.state.products.map((product, key) =>
               <tr>
+                    <td>
                 <Link to={`product/${product._id}`}>
-                  <td>{product._nome}</td>
+                  {product._nome}
                 </Link>
+                  </td>
                 <td>{product._quantidade}</td>
                 <td>R$ {product._preco}</td>
                 <td>{product._codigo}</td>
