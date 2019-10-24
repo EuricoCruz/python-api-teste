@@ -20,12 +20,12 @@ class Login extends Component {
       <form >
         <div className="field">
             <div className="control">
-              <input className="input is-primary" type="text" placeholder='Insira o nome do produto' name="user" />
+              <input className="input is-primary" type="text" placeholder='Digite seu email' name="user" />
             </div>
           </div>
           <div className="field">
             <div className="control">
-              <input className="input is-primary" type="text" placeholder='Insira a quantidade' name="password" />
+              <input className="input is-primary" type="text" placeholder='Digite sua senha' name="password" />
             </div>
         </div>
         <Link to={'/showProducts'}>

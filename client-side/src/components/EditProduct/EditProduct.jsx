@@ -13,18 +13,25 @@ class EditProduct extends Component {
       preco: '',
       codigo: '',
       categoria: '', 
+      hasMessage: false,
     };
   }
 
   handleFormSubmit = (event) => {
     event.preventDefault();
     const {id, nome, quantidade, preco, codigo, categoria} = this.state;
-    axios.put(`${process.env.REACT_APP_API_URL}/produtos/${this.props.match.params.id}`, {id, nome, quantidade, preco, codigo, categoria});
+    axios.put(`${process.env.REACT_APP_API_URL}/produtos/${this.props.match.params.id}`, {id, nome, quantidade, preco, codigo, categoria})
+    .then((item) => {
+      this.setState({
+        hasMessage: true,
+      })
+    })
   } 
 
   handleChange= (event) => {
     this.setState({
       [event.target.name]: event.target.value,
+      hasMessage: false,
     })
   }
 
@@ -32,7 +39,6 @@ class EditProduct extends Component {
     axios.get(`${process.env.REACT_APP_API_URL}/encontrar/${this.props.match.params.id}`)
     .then((product) => {
       const {_id, _nome, _quantidade, _preco, _codigo, _categoria } = product.data
-      console.log(product.data)
       this.setState({
         id: _id,
         nome: _nome,
@@ -56,31 +62,32 @@ class EditProduct extends Component {
         <div className="field">
             <div className="control">
               <input className="input is-primary" type="text" value={this.state.nome} placeholder='Insira o nome do produto' name="nome"
-              onChange={e => this.handleChange(e)} />
+              onChange={e => this.handleChange(e)} required/>
             </div>
           </div>
           <div className="field">
             <div className="control">
               <input className="input is-primary" type="text" value={this.state.quantidade}  placeholder='Insira a quantidade' name="quantidade" 
-              onChange={e => this.handleChange(e)} />
+              onChange={e => this.handleChange(e)} required/>
             </div>
           </div>
           <div className="field">
             <div className="control">
               <input className="input is-primary" type="text" placeholder='Insira o preço' value={this.state.preco}  name="preco" 
-              onChange={e => this.handleChange(e)} />
+              onChange={e => this.handleChange(e)} required/>
             </div>
           </div>
           <div className="field">
             <div className="control">
               <input className="input is-primary" type="text" placeholder='Insira o código do produto' value={this.state.codigo} name="codigo" 
-              onChange={e => this.handleChange(e)} />
+              onChange={e => this.handleChange(e)} required/>
             </div>
           </div>
           <div className="field">
             <div className="control">
               <input className="input is-primary" type="text" placeholder='Insira a categoria do produto' value={this.state.categoria}  name="categoria" 
-              onChange={e => this.handleChange(e)} />
+              onChange={e => this.handleChange(e)} required/>
+              {this.state.hasMessage && <span>Produto {this.state.nome} editado com sucesso</span>}
             </div>
           </div>
           <input className="button" type="submit" value="Atualizar"/>
