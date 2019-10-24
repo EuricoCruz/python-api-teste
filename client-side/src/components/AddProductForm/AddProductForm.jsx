@@ -18,7 +18,7 @@ class AddProductForm extends Component {
   handleFormSubmit = (event) => {
     event.preventDefault();
     const {id, nome, quantidade, preco, codigo, categoria} = this.state;
-    axios.post(`http://127.0.0.1:5000/produtos`, {nome, quantidade, preco, codigo, categoria});
+    axios.post(`${process.env.REACT_APP_API_URL}/produtos`, {nome, quantidade, preco, codigo, categoria});
   } 
 
   handleChange= (event) => {

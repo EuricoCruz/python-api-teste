@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './ShowProducts.css'
 import Axios from 'axios';
 import { Link } from "react-router-dom";
-import bulma from "bulma"
 
 class ShowProducts extends Component {
   constructor() {
@@ -13,7 +12,7 @@ class ShowProducts extends Component {
   }
 
   getProducts = () => {
-    Axios.get('http://127.0.0.1:5000/produtos')
+    Axios.get(`${process.env.REACT_APP_API_URL}/produtos`)
       .then(response => {
         this.setState({
           products: response.data
@@ -22,7 +21,7 @@ class ShowProducts extends Component {
   }
 
   deleteProduct = (product) => {
-    Axios.delete(`http://127.0.0.1:5000/produtos/${product._id}`)
+    Axios.delete(`${process.env.REACT_APP_API_URL}/produtos/${product._id}`)
     .then(() => this.getProducts())
   }
 
@@ -32,7 +31,12 @@ class ShowProducts extends Component {
   render(){
     if(this.state.products.length <= 0) {
       return (
-        <h1 className="title is-1 main-title">Não há produos registrados</h1>
+        <div>
+          <h1 className="title is-1 main-title">Não há produtos registrados</h1>
+          <Link to='/add'>
+          <button className="button">Adicionar produto</button>
+          </Link>
+        </div>
       )
     } else {
       return(
@@ -55,13 +59,15 @@ class ShowProducts extends Component {
           <tbody>
               {this.state.products.map((product, key) =>
               <tr>
-                <td>{product._nome}</td>
+                <Link to={`product/${product._id}`}>
+                  <td>{product._nome}</td>
+                </Link>
                 <td>{product._quantidade}</td>
                 <td>R$ {product._preco}</td>
                 <td>{product._codigo}</td>
                 <td>{product._categoria}</td>
                 
-                  <td><Link to={`/edit/${product._id}`}><button class="button">Editar</button></Link></td>
+                  <td><Link to={`/edit/${product._id}`}><button className="button">Editar</button></Link></td>
                 <td><input className="button" type="submit" value="Deletar" onClick={(e) => this.deleteProduct(product)}/> </td>
               </tr>)} 
           </tbody>

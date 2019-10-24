@@ -19,7 +19,7 @@ class EditProduct extends Component {
   handleFormSubmit = (event) => {
     event.preventDefault();
     const {id, nome, quantidade, preco, codigo, categoria} = this.state;
-    axios.put(`http://127.0.0.1:5000/produtos/${this.props.match.params.id}`, {id, nome, quantidade, preco, codigo, categoria});
+    axios.put(`${process.env.REACT_APP_API_URL}/produtos/${this.props.match.params.id}`, {id, nome, quantidade, preco, codigo, categoria});
   } 
 
   handleChange= (event) => {
@@ -29,7 +29,7 @@ class EditProduct extends Component {
   }
 
   getProduct = () => {
-    axios.get(`http://127.0.0.1:5000/encontrar/${this.props.match.params.id}`)
+    axios.get(`${process.env.REACT_APP_API_URL}/encontrar/${this.props.match.params.id}`)
     .then((product) => {
       const {_id, _nome, _quantidade, _preco, _codigo, _categoria } = product.data
       console.log(product.data)

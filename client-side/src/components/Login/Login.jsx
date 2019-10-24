@@ -13,7 +13,7 @@ class Login extends Component {
 
   render() {
     return(
-      <div>
+      <div className='container notification'>
 
       <h1 className="title is-1 main-title">Bem-vindo</h1>
       <h2 className="title is-2">Faça o login</h2>
